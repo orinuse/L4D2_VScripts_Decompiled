@@ -178,20 +178,12 @@ function BileHurtTankThink()
 
 function CheckDifficultyForTankHealth( difficulty )
 {
-	local health = 0;
-	if ( difficulty == "easy" )
-		health = 2000;
-	else if ( difficulty == "normal" )
-		health = 3000;
-	else if ( difficulty == "hard" )
-		health = 4000;
-	else if ( difficulty == "impossible" )
-		health = 5000;
+	local health = [2000, 3000, 4000, 5000];
 	
 	if ( SessionState.MapName == "c1m1_hotel" )
-		SessionState.TankHealth = (health / 5);
+		SessionState.TankHealth = (health[difficulty] / 5);
 	else
-		SessionState.TankHealth = health;
+		SessionState.TankHealth = health[difficulty];
 }
 
 function OnGameEvent_round_start_post_nav( params )
@@ -218,13 +210,18 @@ function OnGameEvent_round_start_post_nav( params )
 		SessionOptions.cm_TankLimit = 0;
 		SessionState.TanksDisabled = true;
 	}
+	else if ( SessionState.MapName == "c7m1_docks" )
+	{
+		EntFire( "tank_touch_test", "Kill" );
+		EntFire( "tankdoorout_button", "AddOutput", "spawnflags 0" );
+	}
 	
-	CheckDifficultyForTankHealth( Convars.GetStr( "z_difficulty" ).tolower() );
+	CheckDifficultyForTankHealth( GetDifficulty() );
 }
 
 function OnGameEvent_difficulty_changed( params )
 {
-	CheckDifficultyForTankHealth( params["strDifficulty"].tolower() );
+	CheckDifficultyForTankHealth( params["newDifficulty"] );
 }
 
 function OnGameEvent_player_left_safe_area( params )

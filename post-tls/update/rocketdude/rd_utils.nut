@@ -109,7 +109,7 @@ function removeDeathFallCameras(){
 
 ::cvars <-
 {
-	//Survivor settings
+	// Survivor settings
 	sv_infinite_ammo = 1
 	survivor_allow_crawling = 1
 	survivor_crawl_speed = 45
@@ -118,33 +118,35 @@ function removeDeathFallCameras(){
 	first_aid_heal_percent = 0.8
 	z_grab_ledges_solo = 1
 	z_tank_incapacitated_decay_rate = 5
-	//Grenadelauncher settings
+	// Grenadelauncher settings
 	grenadelauncher_velocity = 1100
 	grenadelauncher_startpos_right = 0
 	grenadelauncher_startpos_forward = 16
 	grenadelauncher_vel_variance = 0
 	grenadelauncher_vel_up = 0
-	//Force settings
+	// Force settings
 	phys_explosion_force = 4096
 	melee_force_scalar = 16
 	melee_force_scalar_combat_character = 512
 	phys_pushscale = 512
-	//Infected settings
+	// Infected settings
 	z_force_attack_from_sound_range = 512
 	z_brawl_chance = 1
-	//Medicals
+	// Medicals
 	pain_pills_health_threshold = 199
 	pain_pills_health_value = 100
-	//Items
+	// Items
 	sv_infected_riot_control_tonfa_probability = 0
 	sv_infected_ceda_vomitjar_probability = 0
-	//Votes
+	// Votes
 	sv_vote_creation_timer = 8
 	sv_vote_plr_map_limit = 128
-	//Misc
+	// Misc
 	z_spawn_flow_limit = 99999
 	director_afk_timeout = 99999
 	mp_allowspectators = 0
+	// Disable Placeholder bots
+	director_transition_timeout = 1
 }
 
 

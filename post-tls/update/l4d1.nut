@@ -113,6 +113,11 @@ function OnGameEvent_round_start_post_nav( params )
 	
 	if ( SessionState.ModeName == "l4d1coop" || SessionState.ModeName == "l4d1vs" )
 	{
+		if ( Director.IsL4D1Campaign() )
+		{
+			DirectorOptions.WaterSlowsMovement <- 0	
+		}
+
 		if ( SessionState.MapName == "c8m5_rooftop" || SessionState.MapName == "c9m2_lots" || SessionState.MapName == "c10m5_houseboat"
 			|| SessionState.MapName == "c11m5_runway" || SessionState.MapName == "c12m5_cornfield" )
 		{
@@ -148,6 +153,7 @@ function OnGameEvent_round_start_post_nav( params )
 			}
 			EntFire( "van_follow_trigger", "Kill" );
 			EntFire( "van_endscript_relay", "Kill" );
+			EntFire( "onslaught_hint_trigger", "Kill" );
 		}
 		else if ( SessionState.MapName == "c12m3_bridge" )
 		{
@@ -156,8 +162,9 @@ function OnGameEvent_round_start_post_nav( params )
 			{
 				EntityOutputs.RemoveOutput( relay, "OnTrigger", "director", "BeginScript", "c12m3_onslaught" );
 				EntityOutputs.AddOutput( relay, "OnTrigger", "director", "ForcePanicEvent", "", 2.0, -1 );
-				EntFire( "zombie_spawn1", "Kill" );
 			}
+			EntFire( "zombie_spawn1", "Kill" );
+			EntFire( "onslaught_hint_template", "Kill" );
 		}
 		else if ( SessionState.MapName == "c12m4_barn" )
 			EntFire( "window_trigger", "Kill" );
